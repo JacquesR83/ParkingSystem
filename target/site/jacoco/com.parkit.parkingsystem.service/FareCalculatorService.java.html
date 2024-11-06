@@ -10,60 +10,64 @@ public class FareCalculatorService {
 
     private final TicketDAO ticketDAO;
 
+    private static final double FREE_TIME_LIMIT = 0.5; // 1/2 hour limit
     private static final double DISCOUNT_RATE = 0.95; // 5% discount
 
-<span class="fc" id="L15">    public FareCalculatorService(TicketDAO ticketDAO) {</span>
-<span class="fc" id="L16">        this.ticketDAO = ticketDAO;</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L16">    public FareCalculatorService(TicketDAO ticketDAO) {</span>
+<span class="fc" id="L17">        this.ticketDAO = ticketDAO;</span>
+<span class="fc" id="L18">    }</span>
 
     public void calculateFare(Ticket ticket){
         // Exit time is null or exit time is from a day before
-<span class="pc bpc" id="L21" title="1 of 4 branches missed.">        if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){ </span>
-<span class="fc" id="L22">            throw new IllegalArgumentException(&quot;Out time provided is incorrect:&quot;+ticket.getOutTime().toString());</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ((ticket.getOutTime() == null)) {</span>
+<span class="fc" id="L23">            throw new NullPointerException(&quot;Out time can't be found&quot;);</span>
+        }
+<span class="fc bfc" id="L25" title="All 2 branches covered.">         else if( (ticket.getOutTime().before(ticket.getInTime())) ){</span>
+<span class="fc" id="L26">            throw new IllegalArgumentException(&quot;Out time provided is incorrect:&quot;+ticket.getOutTime().toString());</span>
         }
 
-<span class="fc" id="L25">        long inHour = ticket.getInTime().getTime();</span>
-<span class="fc" id="L26">        long outHour = ticket.getOutTime().getTime(); // Returns ms</span>
+<span class="fc" id="L29">        long inHour = ticket.getInTime().getTime();</span>
+<span class="fc" id="L30">        long outHour = ticket.getOutTime().getTime(); // Returns ms</span>
 
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
-<span class="fc" id="L30">        long difference = outHour - inHour; // If divided here, division will result an integer and 0 if (0 &lt; number &lt; 1)</span>
-<span class="fc" id="L31">        double duration = difference / 3600000.0;// Converts to hours</span>
+<span class="fc" id="L34">        long difference = outHour - inHour; // If divided here, division will result an integer and 0 if (0 &lt; number &lt; 1)</span>
+<span class="fc" id="L35">        double duration = difference / 3600000.0;// Converts to hours</span>
 
 
         // Adding free 30 minutes
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (duration &gt; 0.5)</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (duration &gt; FREE_TIME_LIMIT)</span>
         {
-<span class="pc bpc" id="L37" title="1 of 3 branches missed.">            switch (ticket.getParkingSpot().getParkingType()){</span>
+<span class="fc bfc" id="L41" title="All 3 branches covered.">            switch (ticket.getParkingSpot().getParkingType()){</span>
                 case CAR: {
-                    // Apply discount
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                    if(ticketDAO.recurrentVisitor(ticket)){</span>
-<span class="fc" id="L41">                        ticket.setPrice((duration) * Fare.CAR_RATE_PER_HOUR * DISCOUNT_RATE);</span>
+                    // Apply 5% discount
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                    if(ticketDAO.recurrentVisitor(ticket)){</span>
+<span class="fc" id="L45">                        ticket.setPrice((duration) * Fare.CAR_RATE_PER_HOUR * DISCOUNT_RATE);</span>
                     }
                     // Does nothing
                     else {
-<span class="fc" id="L45">                        ticket.setPrice((duration) * Fare.CAR_RATE_PER_HOUR);</span>
+<span class="fc" id="L49">                        ticket.setPrice((duration) * Fare.CAR_RATE_PER_HOUR);</span>
                     }
-<span class="fc" id="L47">                    break;</span>
+<span class="fc" id="L51">                    break;</span>
                 }
                 case BIKE: {
-                    // Apply discount
-<span class="fc bfc" id="L51" title="All 2 branches covered.">                    if (ticketDAO.recurrentVisitor(ticket)){</span>
-<span class="fc" id="L52">                        ticket.setPrice((duration) * Fare.BIKE_RATE_PER_HOUR * DISCOUNT_RATE);</span>
+                    // Apply 5% discount
+<span class="fc bfc" id="L55" title="All 2 branches covered.">                    if (ticketDAO.recurrentVisitor(ticket)){</span>
+<span class="fc" id="L56">                        ticket.setPrice((duration) * Fare.BIKE_RATE_PER_HOUR * DISCOUNT_RATE);</span>
                     }
                     //Does nothing
                     else {
-<span class="fc" id="L56">                        ticket.setPrice((duration) * Fare.BIKE_RATE_PER_HOUR);</span>
+<span class="fc" id="L60">                        ticket.setPrice((duration) * Fare.BIKE_RATE_PER_HOUR);</span>
                     }
-<span class="fc" id="L58">                    break;</span>
+<span class="fc" id="L62">                    break;</span>
                 }
-<span class="nc" id="L60">                default: throw new IllegalArgumentException(&quot;Unkown Parking Type&quot;);</span>
+<span class="fc" id="L64">                default: throw new IllegalArgumentException (&quot;Unkown Parking Type&quot;);</span>
 
                 }
 
         }else {
-<span class="fc" id="L65">            ticket.setPrice(Fare.VEHICLE_RATE_FREE_TIME);</span>
+<span class="fc" id="L69">            ticket.setPrice(Fare.VEHICLE_RATE_FREE_TIME);</span>
         }
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L71">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

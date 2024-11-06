@@ -19,7 +19,10 @@ public class FareCalculatorService {
 
     public void calculateFare(Ticket ticket){
         // Exit time is null or exit time is from a day before
-        if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){ 
+        if ((ticket.getOutTime() == null)) {
+            throw new NullPointerException("Out time can't be found");
+        }
+         else if( (ticket.getOutTime().before(ticket.getInTime())) ){
             throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
         }
 
@@ -58,7 +61,7 @@ public class FareCalculatorService {
                     }
                     break;
                 }
-                default: throw new IllegalArgumentException("Unkown Parking Type");
+                default: throw new IllegalArgumentException ("Unkown Parking Type");
 
                 }
 
