@@ -194,7 +194,6 @@ public class FareCalculatorServiceTest {
         fareCalculatorService.calculateFare(ticket);
 
         assertEquals(0.95, ticket.getPrice(), 0.01);
-        //
     }
 
 
