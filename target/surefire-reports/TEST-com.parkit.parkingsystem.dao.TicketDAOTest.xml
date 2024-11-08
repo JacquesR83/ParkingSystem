@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.parkit.parkingsystem.FareCalculatorServiceTest" time="4.242" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.parkit.parkingsystem.dao.TicketDAOTest" time="0.001" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,18 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="calculateFareOutTimeException" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.081"/>
-  <testcase name="calculateFareOutTimeNull" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0"/>
-  <testcase name="calculateFareCarWithLessThanOneHourParkingTime" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="2.133"/>
-  <testcase name="calculateFareBikeLessThanThirtyMinutes" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.002"/>
-  <testcase name="calculateFareBikeOneHour" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.022"/>
-  <testcase name="calculateFareCarLessThanThirtyMinutes" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0"/>
-  <testcase name="UnknownParkingType" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0"/>
-  <testcase name="calculateFareUnkownType" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.002"/>
-  <testcase name="calculateDiscountFivePercentBikeRecurrentUsers" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.096"/>
-  <testcase name="calculateFareCarWithMoreThanADayParkingTime" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.016"/>
-  <testcase name="calculateFareBikeWithLessThanOneHourParkingTime" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.021"/>
-  <testcase name="calculateDiscountFivePercentCarRecurrentUsers" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.029"/>
-  <testcase name="calculateFareCarOneHour" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.01"/>
-  <testcase name="calculateFareBikeWithFutureInTime" classname="com.parkit.parkingsystem.FareCalculatorServiceTest" time="0.001"/>
+  <testcase name="recurrentVisitor" classname="com.parkit.parkingsystem.dao.TicketDAOTest" time="0"/>
+  <testcase name="updateTicket" classname="com.parkit.parkingsystem.dao.TicketDAOTest" time="0"/>
+  <testcase name="getTicket" classname="com.parkit.parkingsystem.dao.TicketDAOTest" time="0"/>
+  <testcase name="saveTicket" classname="com.parkit.parkingsystem.dao.TicketDAOTest" time="0"/>
 </testsuite>
