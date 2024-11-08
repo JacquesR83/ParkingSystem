@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 
 import static com.parkit.parkingsystem.constants.ParkingType.CAR;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 public class ParkingSpotTest {
@@ -63,21 +64,55 @@ public class ParkingSpotTest {
         assertEquals(CAR, fieldValue);
     }
 
-    @Test
-    void isAvailableTest() {
+    @Test // Test for a return : check if the value exists ( = should not),
+        // verify it then set it to true and assert
+    void returnIsAvailableTest() {
 
+        // Instanciation de parkingspot dans le before
+        // Verifie l'existence de parkingspot en renvoyant un booleen qui doit être false
 
+        boolean result= parkingSpot.isAvailable();
+        // Make sure it's not existing  / false
+        assertFalse(result);
+
+        // Make the isAvailable boolean available
+        parkingSpot.setAvailable(true);
+
+        // pass the change to result that should be true
+        result = parkingSpot.isAvailable();
+        // Check if result is true
+        assertTrue(result);
     }
 
-    @Test
-    void setAvailableTest() {
-    }
 
     @Test
-    void testEquals() {
+    void setAvailableTrueTest() throws NoSuchFieldException, IllegalAccessException {
+        parkingSpot.setAvailable(true);
+        final Field field = parkingSpot.getClass().getDeclaredField("isAvailable");
+        field.setAccessible(true);
+        boolean fieldValue = (boolean) field.get(parkingSpot);
+        assertEquals(true, fieldValue);
     }
 
+    // Optionnal test to make sure false passes too
     @Test
-    void testHashCode() {
+    void setAvailableFalseTest() throws NoSuchFieldException, IllegalAccessException {
+        parkingSpot.setAvailable(false);
+        final Field field = parkingSpot.getClass().getDeclaredField("isAvailable");
+        field.setAccessible(true);
+        boolean fieldValue = (boolean) field.get(parkingSpot);
+        assertEquals(false, fieldValue);
     }
+
+// Not used in the code
+
+//    @Test
+//    void testEquals() {
+//
+//    }
+//
+//    @Test
+//    void testHashCode() {
+//    }
+
 }

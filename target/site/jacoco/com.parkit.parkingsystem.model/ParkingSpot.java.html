@@ -30,24 +30,27 @@ public class ParkingSpot {
 <span class="fc" id="L30">    }</span>
 
     public boolean isAvailable() {
-<span class="nc" id="L33">        return isAvailable;</span>
+<span class="fc" id="L33">        return isAvailable;</span>
     }
 
     public void setAvailable(boolean available) {
-<span class="nc" id="L37">        isAvailable = available;</span>
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L37">        isAvailable = available;</span>
+<span class="fc" id="L38">    }</span>
 
-    @Override
-    public boolean equals(Object o) {
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L43" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L44">        ParkingSpot that = (ParkingSpot) o;</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        return number == that.number;</span>
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        ParkingSpot that = (ParkingSpot) o;
+//        return number == that.number;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return number;
+//    }
+    
 
-    @Override
-    public int hashCode() {
-<span class="nc" id="L50">        return number;</span>
-    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
