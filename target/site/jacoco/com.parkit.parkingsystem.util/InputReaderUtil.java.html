@@ -5,18 +5,18 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-<span class="nc" id="L8">public class InputReaderUtil {</span>
+<span class="fc" id="L8">public class InputReaderUtil {</span>
 
-<span class="nc" id="L10">    private static Scanner scan = new Scanner(System.in);</span>
+<span class="fc" id="L10">    private static Scanner scan = new Scanner(System.in);</span>
 
     // Displays messages that can be filtered by type ie error, info...
-<span class="nc" id="L13">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
+<span class="fc" id="L13">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
 
     public int readSelection() {
         try {
             //Reads data given in entry to return an int
-<span class="nc" id="L18">            int input = Integer.parseInt(scan.nextLine());</span>
-<span class="nc" id="L19">            return input;</span>
+<span class="fc" id="L18">            int input = Integer.parseInt(scan.nextLine());</span>
+<span class="fc" id="L19">            return input;</span>
 <span class="nc" id="L20">        }catch(Exception e){</span>
 <span class="nc" id="L21">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
 <span class="nc" id="L22">            System.out.println(&quot;Error reading input. Please enter valid number for proceeding further&quot;);</span>
